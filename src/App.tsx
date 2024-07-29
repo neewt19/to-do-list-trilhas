@@ -58,9 +58,9 @@ function App() {
     <>
       <div className={styles.fundo}>
         <div className={styles.container}>
-          <div className={styles.header}>
+          <header className={styles.header}>
             <h1>to-do-list</h1>
-          </div>
+          </header>
           <div className={styles.imputArea}>
             <input
               value={newTask}
