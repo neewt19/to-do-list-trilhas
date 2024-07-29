@@ -56,12 +56,12 @@ function App() {
 
   return (
     <>
-      <div className={styles.fundo}>
+      <main className={styles.fundo}>
         <div className={styles.container}>
           <header className={styles.header}>
             <h1>to-do-list</h1>
           </header>
-          <div className={styles.imputArea}>
+          <section className={styles.imputArea}>
             <input
               value={newTask}
               type="text"
@@ -69,8 +69,8 @@ function App() {
               placeholder="Adicione uma nova tarefa"
             />
             <button onClick={handleCreateNewTask}>Adicionar</button>
-          </div>
-          <div className={styles.tasksCount}>
+          </section>
+          <section className={styles.tasksCount}>
             <div>
               <span>Tarefas criadas</span>
               <span className={styles.taskCountNumbers}>{tasks.length}</span>
@@ -81,7 +81,7 @@ function App() {
                 {count} de {tasks.length}
               </span>
             </div>
-          </div>
+          </section>
           {renderItem()}
           {tasks.map((tasks) => {
             return (
@@ -97,7 +97,7 @@ function App() {
             );
           })}
         </div>
-      </div>
+      </main>
     </>
   );
 }

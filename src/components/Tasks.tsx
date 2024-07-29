@@ -28,7 +28,7 @@ export function Tasks({
 
   return (
     <>
-      <div className={style.container}>
+      <section className={style.container}>
         <div className={style.checkBox}>
           <label>
             <input
@@ -53,7 +53,7 @@ export function Tasks({
             </button>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
