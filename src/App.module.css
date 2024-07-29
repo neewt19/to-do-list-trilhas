@@ -1,0 +1,111 @@
+.fundo {
+  background-color: #6141a6;
+  position: relative;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  width: max-content;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.imputArea {
+  display: flex;
+  gap: 8px;
+}
+
+.imputArea input {
+  display: flex;
+  width: 39.875rem;
+  height: 3.375rem;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  background-color: #8067b8;
+  padding: 16px;
+  font-size: 16px;
+}
+
+.header {
+  display: flex;
+  width: max-content;
+  height: max-content;
+  margin-bottom: 53px;
+  margin-top: 32px;
+  gap: 12px;
+}
+
+.header > h1 {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.imputArea button {
+  width: 5.625rem;
+  height: 3.25rem;
+  border-radius: 8px;
+  background-color: #8067b8;
+  border: none;
+  color: white;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.imputArea button:hover {
+  background-color: #745ca8;
+}
+
+.tasksCount {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  margin-top: 35px;
+  width: 100%;
+  font-weight: 700;
+}
+
+.taskCountNumbers {
+  padding: 2px 8px;
+  background-color: #8067b8;
+  border-radius: 999px;
+  color: #fff;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.noTasks {
+  border-top: 2px solid #8067b8;
+  color: #808080;
+  width: 100%;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spanBold {
+  line-height: 140%;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.clipBoard {
+  color: #8067b8;
+  margin-top: 64px;
+  margin-bottom: 14px;
+  font-size: 70px;
+}
