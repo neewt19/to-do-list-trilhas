@@ -42,14 +42,14 @@ export function Tasks({
             <span>{content}</span>
           </label>
           <div className={style.buttonContainer}>
+            <button className={style.editTaskButton}>
+              <RiPencilFill />
+            </button>
             <button
               className={style.deleteTaskButton}
               onClick={handleDeleteTask}
             >
               <FaTrash></FaTrash>
-            </button>
-            <button className={style.editTaskButton}>
-              <RiPencilFill />
             </button>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./App.module.css";
 import { Tasks } from "./components/Tasks";
-import { BsClipboardX } from "react-icons/bs";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -46,9 +45,6 @@ function App() {
     if (tasks.length === 0) {
       return (
         <div className={styles.noTasks}>
-          <div className={styles.clipBoard}>
-            <BsClipboardX></BsClipboardX>
-          </div>
           <span className={styles.spanBold}>
             Você ainda não tem tarefas cadastradas
           </span>

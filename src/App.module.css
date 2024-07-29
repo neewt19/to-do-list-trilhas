@@ -1,3 +1,7 @@
+html {
+  font-size: 10px;
+}
+
 .fundo {
   background-color: #6141a6;
   position: relative;
@@ -25,40 +29,41 @@
 
 .imputArea input {
   display: flex;
-  width: 39.875rem;
-  height: 3.375rem;
+  width: 63.6rem;
+  height: 5.375rem;
   border-radius: 8px;
   color: white;
   border: none;
   background-color: #8067b8;
-  padding: 16px;
-  font-size: 16px;
+  padding: 1.6rem;
+  font-size: 1.6rem;
 }
 
 .header {
   display: flex;
   width: max-content;
   height: max-content;
-  margin-bottom: 53px;
-  margin-top: 32px;
-  gap: 12px;
+  margin-bottom: 5.3rem;
+  margin-top: 3.2rem;
+  gap: 1.2rem;
 }
 
 .header > h1 {
   color: #fff;
-  font-size: 40px;
+  font-size: 4rem;
   font-weight: 900;
 }
 
 .imputArea button {
-  width: 5.625rem;
-  height: 3.25rem;
+  width: 8.625rem;
+  height: 5.25rem;
   border-radius: 8px;
   background-color: #8067b8;
   border: none;
   color: white;
   gap: 8px;
-  font-size: 14px;
+  font-size: 1.6rem;
+  font-weight: 700;
   cursor: pointer;
   transition: 0.5s;
 }
@@ -71,26 +76,27 @@
   display: flex;
   justify-content: space-between;
   color: #fff;
-  margin-top: 35px;
-  width: 100%;
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  width: 98%;
   font-weight: 700;
 }
 
 .taskCountNumbers {
-  padding: 2px 8px;
+  padding: 3px 8px;
   background-color: #8067b8;
   border-radius: 999px;
   color: #fff;
-  margin-left: 10px;
-  font-size: 12px;
+  margin-left: 1rem;
+  font-size: 1.6rem;
   font-weight: 700;
 }
 
 .noTasks {
   border-top: 2px solid #8067b8;
-  color: #808080;
+  color: #fff;
   width: 100%;
-  margin-top: 24px;
+  margin-top: 2.4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,14 +104,60 @@
 }
 
 .spanBold {
+  margin-top: 3rem;
   line-height: 140%;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 
-.clipBoard {
-  color: #8067b8;
-  margin-top: 64px;
-  margin-bottom: 14px;
-  font-size: 70px;
+@media (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .header {
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+  }
+
+  .header > h1 {
+    font-size: 3rem;
+  }
+
+  .imputArea {
+    gap: 0.5rem;
+  }
+
+  .imputArea input {
+    width: 20rem;
+    height: 4rem;
+    font-size: 1.2rem;
+  }
+
+  .imputArea button {
+    width: 8rem;
+    height: 4rem;
+    font-size: 1.2rem;
+  }
+
+  .tasksCount {
+    gap: 0.2rem;
+    font-size: 1.3rem;
+  }
+
+  .tasksCount div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .taskCountNumbers {
+    margin-left: 0;
+    padding: 2 px 4px;
+  }
+
+  .spanBold {
+    font-size: 1.6rem;
+  }
 }
