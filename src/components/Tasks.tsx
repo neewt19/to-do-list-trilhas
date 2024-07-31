@@ -6,7 +6,7 @@ import { AiOutlineCheck } from "react-icons/ai";
 export interface TasksProps {
   content: string;
   id: number;
-  descrição: string;
+  description: string;
   deleteTask: (Task: number, checked: boolean) => void;
   countTask: () => void;
   checked: boolean;
