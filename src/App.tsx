@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect, Key, SetStateAction } from "react";
 import styles from "./App.module.css";
 import checklist from './assets/checklist.png'
 import { Tasks } from "./components/Tasks";
 
 function App() {
   const [tasks, setTasks] = useState([
-    { id: 0, content: " Estudar React ", description: "Amanha", checked: false },
+    { id: 0, content: " Estudar React ", checked: false },
   ]);
-  const [newTask, setNewTask] = useState([]);
-  const [newDesc, setNewDesc] = useState("");
+  const [newTask, setNewTask] = useState("");
   const [count, setCount] = useState(0);
   const [id, setId] = useState(1);
 
@@ -18,39 +17,35 @@ function App() {
 
   const handleCreateNewTask = () => {
     setId(id + 1);
-    const newTaskObj = { id: id, content: newTask, description: newDesc, checked: false, isEditing: false };
+    const newTaskObj = { id: id, content: newTask, checked: false };
     setTasks([...tasks, newTaskObj]);
     setNewTask("");
-    setNewDesc("");
   };
 
-  const deleteTask = (TaskId: number, checked: boolean) => {
-    const DeletedTask = tasks.filter((task) => {
-      return task.id !== TaskId;
-    });
-    setTasks(DeletedTask);
+  const deleteTask = (taskId: number, checked: boolean) => {
+    const deletedTask = tasks.filter(
+      (task: { id: number }) => task.id !== taskId
+    );
+    setTasks(deletedTask);
     if (count > 0) {
       setCount(!checked ? count + 0 : count - 1);
     }
   };
 
   const toggleTask = (taskId: number, checked: boolean) => {
-    const updatedTasks = tasks.map((task) => {
-      const tasksreturn =
-        task.id === taskId ? { ...task, checked: !task.checked } : task;
-      return tasksreturn;
-    });
+    const updatedTasks = tasks.map(
+      (task: { id: Key | null | undefined; checked: boolean }) =>
+        task.id === taskId ? { ...task, checked: !task.checked } : task
+    );
     setTasks(updatedTasks);
     setCount(checked ? count - 1 : count + 1);
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setNewTask(event.target.value);
   };
-
-  const handleChangeDesc = (event) => {
-    setNewDesc(event.target.value);
-  }
 
   function renderItem() {
     if (tasks.length === 0) {
@@ -73,49 +68,46 @@ function App() {
           <img src={checklist} />
             <h1>Todo List</h1>
           </header>
-          <form onSubmit={handleSubmit}>
-            <section className={styles.imputArea}>
-              <input
-                value={newTask}
-                type="text"
-                onChange={handleChange}
-                placeholder="Adicione uma nova tarefa"
-              />
-              <input
-                type="text"
-                value={newDesc}
-                onChange={handleChangeDesc}
-                placeholder="Adicione uma descrição"
-              />
-              <button onClick={handleCreateNewTask}>Adicionar</button>
-            </section>
-          </form>
+          <section className={styles.imputArea}>
+            <input
+              value={newTask}
+              type="text"
+              onChange={handleChange}
+              placeholder="Adicione uma nova tarefa"
+            />
+            <button onClick={handleCreateNewTask}>Adicionar</button>
+          </section>
           <section className={styles.tasksCount}>
             <div>
               <span>Tarefas criadas</span>
               <span className={styles.taskCountNumbers}>{tasks.length}</span>
             </div>
             <div>
-              <span>Concluidas</span>
+              <span>Concluídas</span>
               <span className={styles.taskCountNumbers}>
                 {count} de {tasks.length}
               </span>
             </div>
           </section>
           {renderItem()}
-          {tasks.map((tasks) => {
-            return (
+          {tasks.map(
+            (task: {
+              id: number;
+              content: string;
+              description: string;
+              checked: boolean;
+            }) => (
               <Tasks
                 key={tasks.id}
                 id={tasks.id}
                 content={tasks.content}
-                description={tasks.description}
+                descrição="oi"
                 deleteTask={deleteTask}
-                countTask={() => toggleTask(tasks.id, tasks.checked)}
-                checked={tasks.checked}
-              ></Tasks>
-            );
-          })}
+                countTask={() => toggleTask(task.id, task.checked)}
+                checked={task.checked}
+              />
+            )
+          )}
         </div>
       </main>
       <footer className={styles.creditos}>
