@@ -7,7 +7,7 @@ html {
   justify-content: center;
   flex-direction: row;
 
-  width: 73.6rem;
+  width: 100%;
   min-height: 7.2rem;
   max-height: max-content;
   background-color: #8067b8;
@@ -45,7 +45,7 @@ html {
   color: #ffffff;
 }
 
-.checkBox label input:checked + .check + span {
+.checkBox label input:checked + .check + .content .titleTask {
   color: rgb(253, 202, 249);
   text-decoration: line-through;
 }
@@ -56,6 +56,7 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .container label {
@@ -66,6 +67,19 @@ html {
   font-weight: 500;
   overflow: hidden;
   overflow-wrap: break-word;
+}
+
+.container .content{
+  width: 100%;
+  max-width: 280px;
+}
+
+hr{
+  opacity: .1;
+}
+
+.content .description{
+  font-size: 1.5rem;
 }
 
 .tasksContent {
@@ -125,27 +139,9 @@ html {
   background-color: #4ea8de;
   color: #ffffff;
 }
-@media (max-width: 768px) {
-  .container {
-    padding: 0.5rem 1rem;
-    gap: 1rem;
-    width: 30rem;
-    height: 2rem;
-    align-items: center;
-  }
 
-  .buttonContainer {
-    gap: 1.6rem;
-  }
-
-  .container label {
-    align-items: center;
-    font-size: 1.6rem;
-    gap: 1rem;
-  }
-
-  .deleteTaskButton,
-  .editTaskButton {
-    font-size: 2rem;
+@media screen and (max-width: 420px){
+  .checkBox{
+    justify-content: center;
   }
 }

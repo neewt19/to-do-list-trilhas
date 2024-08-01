@@ -14,7 +14,8 @@ html {
 
 .container {
   display: flex;
-  width: max-content;
+  width: 80%;
+  max-width: 760px;
 
   flex-direction: column;
   justify-content: center;
@@ -22,15 +23,19 @@ html {
   position: relative;
 }
 
+form{
+  width: 100%;
+}
+
 .imputArea {
   display: flex;
   gap: 8px;
+  width: 100%;
 }
 
 .imputArea input {
   display: flex;
-  width: 63.6rem;
-  height: 5.375rem;
+  width: 100%;
   border-radius: 8px;
   color: white;
   border: none;
@@ -48,6 +53,12 @@ html {
   gap: 1.2rem;
 }
 
+.header img{
+  width: 100%;
+  height: auto;
+  max-width: 60px;
+}
+
 .header > h1 {
   color: #fff;
   font-size: 4rem;
@@ -55,7 +66,8 @@ html {
 }
 
 .imputArea button {
-  width: 8.625rem;
+  width: 100%;
+  max-width: 110px;
   height: 5.25rem;
   border-radius: 8px;
   background-color: #8067b8;
@@ -75,6 +87,8 @@ html {
 .tasksCount {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
   color: #fff;
   margin-top: 2rem;
   font-size: 1.6rem;
@@ -97,67 +111,64 @@ html {
   color: #fff;
   width: 100%;
   margin-top: 2.4rem;
+  line-height: 1.5;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .spanBold {
   margin-top: 3rem;
-  line-height: 140%;
   font-weight: 700;
   font-size: 1.8rem;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 0.5rem;
-  }
+.subtitle{
+  font-size: 1.45rem;
+}
 
-  .header {
-    margin-bottom: 3rem;
-    margin-top: 3rem;
-  }
+.creditos{
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(109, 11, 128, 0.642);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+}
 
-  .header > h1 {
-    font-size: 3rem;
-  }
+.creditos .creditosContainer{
+  line-height: 1.85;
+}
 
-  .imputArea {
-    gap: 0.5rem;
-  }
+.creditosContainer h2{
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: #f2f2f2;
+}
 
-  .imputArea input {
-    width: 21rem;
-    height: 4rem;
-    font-size: 1.2rem;
-  }
+.creditosContainer h3{
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #f2f2f2;
+}
 
-  .imputArea button {
-    width: 8rem;
-    height: 4rem;
-    font-size: 1.2rem;
+@media screen and (max-width: 712px){
+  .imputArea{
+    flex-wrap: wrap;
+    justify-content: center;
   }
-
-  .tasksCount {
-    gap: 0.2rem;
-    font-size: 1.3rem;
+  
+  .imputArea button{
+    max-width: 50%;
   }
+}
 
-  .tasksCount div {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-  }
-
-  .taskCountNumbers {
-    margin-left: 0;
-    padding: 2 px 4px;
-  }
-
-  .spanBold {
-    font-size: 1.6rem;
+@media screen and (max-width: 407px){
+   .tasksCount{
+    justify-content: center;
   }
 }

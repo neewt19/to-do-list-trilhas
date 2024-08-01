@@ -1,20 +1,27 @@
 import { useState } from "react";
 import styles from "./App.module.css";
+import checklist from './assets/checklist.png'
 import { Tasks } from "./components/Tasks";
 
 function App() {
   const [tasks, setTasks] = useState([
-    { id: 0, content: " Estudar React ", checked: false },
+    { id: 0, content: " Estudar React ", description: "Amanha", checked: false },
   ]);
-  const [newTask, setNewTask] = useState("");
+  const [newTask, setNewTask] = useState([]);
+  const [newDesc, setNewDesc] = useState("");
   const [count, setCount] = useState(0);
   const [id, setId] = useState(1);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   const handleCreateNewTask = () => {
     setId(id + 1);
-    const newTaskObj = { id: id, content: newTask, checked: false };
+    const newTaskObj = { id: id, content: newTask, description: newDesc, checked: false, isEditing: false };
     setTasks([...tasks, newTaskObj]);
     setNewTask("");
+    setNewDesc("");
   };
 
   const deleteTask = (TaskId: number, checked: boolean) => {
@@ -41,6 +48,10 @@ function App() {
     setNewTask(event.target.value);
   };
 
+  const handleChangeDesc = (event) => {
+    setNewDesc(event.target.value);
+  }
+
   function renderItem() {
     if (tasks.length === 0) {
       return (
@@ -48,7 +59,7 @@ function App() {
           <span className={styles.spanBold}>
             Você ainda não tem tarefas cadastradas
           </span>
-          <span>Crie tarefas e organize seus itens a fazer</span>
+          <span className={styles.subtitle}>Crie tarefas e organize seus itens a fazer</span>
         </div>
       );
     }
@@ -59,17 +70,26 @@ function App() {
       <main className={styles.fundo}>
         <div className={styles.container}>
           <header className={styles.header}>
-            <h1>to-do-list</h1>
+          <img src={checklist} />
+            <h1>Todo List</h1>
           </header>
-          <section className={styles.imputArea}>
-            <input
-              value={newTask}
-              type="text"
-              onChange={handleChange}
-              placeholder="Adicione uma nova tarefa"
-            />
-            <button onClick={handleCreateNewTask}>Adicionar</button>
-          </section>
+          <form onSubmit={handleSubmit}>
+            <section className={styles.imputArea}>
+              <input
+                value={newTask}
+                type="text"
+                onChange={handleChange}
+                placeholder="Adicione uma nova tarefa"
+              />
+              <input
+                type="text"
+                value={newDesc}
+                onChange={handleChangeDesc}
+                placeholder="Adicione uma descrição"
+              />
+              <button onClick={handleCreateNewTask}>Adicionar</button>
+            </section>
+          </form>
           <section className={styles.tasksCount}>
             <div>
               <span>Tarefas criadas</span>
@@ -89,7 +109,7 @@ function App() {
                 key={tasks.id}
                 id={tasks.id}
                 content={tasks.content}
-                descrição="oi"
+                description={tasks.description}
                 deleteTask={deleteTask}
                 countTask={() => toggleTask(tasks.id, tasks.checked)}
                 checked={tasks.checked}
@@ -98,6 +118,16 @@ function App() {
           })}
         </div>
       </main>
+      <footer className={styles.creditos}>
+          <div className={styles.creditosContainer}>
+            <h2>
+              Desenvolvido por: Alexsandro e Netw
+            </h2>
+            <h3>
+              Criador do projeto: Netw
+            </h3>
+          </div>
+        </footer>
     </>
   );
 }
