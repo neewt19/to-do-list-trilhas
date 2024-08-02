@@ -74,7 +74,6 @@ const App = () => {
         <span className={styles.spanBold}>
           Você ainda não tem tarefas cadastradas
         </span>
-        <span>Crie tarefas e se mantenha organizado</span>
       </div>
     );
 

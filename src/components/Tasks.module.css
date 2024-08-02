@@ -71,6 +71,7 @@ html {
   gap: 1.4rem;
   width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
 }
@@ -154,8 +155,32 @@ hr {
   color: #ffffff;
 }
 
-@media screen and (max-width: 420px) {
-  .checkBox {
-    justify-content: center;
+@media (max-width: 768px) {
+  .titleTask {
+    font-size: 1.8rem;
+  }
+  .descriptionTask {
+    font-size: 1.2rem;
+  }
+  .content {
+    max-width: 140px;
+  }
+  .buttonContainer {
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+  .editTaskButton > svg {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+  .editTaskButton {
+    margin-top: 0;
+  }
+  .deleteTaskButton > svg {
+    width: 2rem;
+    height: 2rem;
+  }
+  .deleteTaskButton {
+    margin-top: 0;
   }
 }
