@@ -167,7 +167,7 @@ form{
   }
 }
 
-@media screen and (max-width: 407px){
+@media screen and (max-width: 412px){
    .tasksCount{
     justify-content: center;
   }

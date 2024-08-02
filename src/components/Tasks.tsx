@@ -57,6 +57,8 @@ export function Tasks({
             </span>
             <div className={style.content}>
               <span className={style.titleTask}>{content}</span>
+              <hr />
+              <span className={style.titleTask}>{description}</span>
             </div>
           </label>
           <div className={style.buttonContainer}>
