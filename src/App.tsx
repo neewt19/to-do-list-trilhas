@@ -39,7 +39,7 @@ const App = () => {
     };
     setTasks([...tasks, newTaskObj]);
     setNewTask("");
-    setNewDescription("sou uma descrição");
+    setNewDescription("");
     setId(id + 1);
   };
 
