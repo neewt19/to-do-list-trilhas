@@ -1,127 +1,128 @@
-import { useState, useEffect, Key, SetStateAction } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import styles from "./App.module.css";
-import checklist from './assets/checklist.png'
-import { Tasks } from "./components/Tasks";
+import { Tasks, TasksProps } from "./components/Tasks";
 
-function App() {
-  const [tasks, setTasks] = useState([
-    { id: 0, content: " Estudar React ", checked: false },
-  ]);
-  const [newTask, setNewTask] = useState("");
-  const [count, setCount] = useState(0);
-  const [id, setId] = useState(1);
+const App = () => {
+  const getSavedTasks = (): TasksProps[] => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  }
+  const getInitialId = (): number => {
+    const savedTasks = getSavedTasks();
+    return savedTasks.length ? savedTasks[savedTasks.length - 1].id + 1 : 1;
+  };
+
+  const getCheckedCount = (tasks: TasksProps[]): number =>
+    tasks.filter((task) => task.checked).length;
+
+  const [tasks, setTasks] = useState<TasksProps[]>(getSavedTasks);
+  const [newTask, setNewTask] = useState<string>("");
+  const [description, setNewDescription] = useState<string>("");
+  const [count, setCount] = useState<number>(getCheckedCount(tasks));
+  const [id, setId] = useState<number>(getInitialId());
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleCreateNewTask = () => {
-    setId(id + 1);
-    const newTaskObj = { id: id, content: newTask, checked: false };
+    if (!newTask.trim()) return;
+    const newTaskObj: TasksProps = {
+      id,
+      content: newTask.trim(),
+      checked: false,
+      description: description.trim(),
+      deleteTask,
+      updateTask,
+      countTask: handleTaskChange,
+    };
     setTasks([...tasks, newTaskObj]);
     setNewTask("");
+    setNewDescription("");
+    setId(id + 1);
   };
 
   const deleteTask = (taskId: number, checked: boolean) => {
-    const deletedTask = tasks.filter(
-      (task: { id: number }) => task.id !== taskId
-    );
-    setTasks(deletedTask);
-    if (count > 0) {
-      setCount(!checked ? count + 0 : count - 1);
-    }
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    if (count > 0 && checked) setCount(count - 1);
   };
 
-  const toggleTask = (taskId: number, checked: boolean) => {
-    const updatedTasks = tasks.map(
-      (task: { id: Key | null | undefined; checked: boolean }) =>
+  const handleTaskChange = (taskId: number, checked: boolean) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
         task.id === taskId ? { ...task, checked: !task.checked } : task
+      )
     );
-    setTasks(updatedTasks);
     setCount(checked ? count - 1 : count + 1);
   };
 
-  const handleChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setNewTask(event.target.value);
+  const updateTask = (id: number, content: string, description: string) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, content, description } : task
+      )
+    );
   };
 
-  function renderItem() {
-    if (tasks.length === 0) {
-      return (
-        <div className={styles.noTasks}>
-          <span className={styles.spanBold}>
-            Você ainda não tem tarefas cadastradas
-          </span>
-          <span className={styles.subtitle}>Crie tarefas e organize seus itens a fazer</span>
-        </div>
-      );
-    }
-  }
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setNewTask(e.target.value);
+
+  const handleDescriptionChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setNewDescription(e.target.value);
+
+  const renderNoTasksMessage = () =>
+    tasks.length === 0 && (
+      <div className={styles.noTasks}>
+        <span className={styles.spanBold}>
+          Você ainda não tem tarefas cadastradas
+        </span>
+        <span>Crie tarefas e organize seus itens a fazer</span>
+      </div>
+    );
 
   return (
-    <>
-      <main className={styles.fundo}>
-        <div className={styles.container}>
-          <header className={styles.header}>
-          <img src={checklist} />
-            <h1>Todo List</h1>
-          </header>
-          <section className={styles.imputArea}>
-            <input
-              value={newTask}
-              type="text"
-              onChange={handleChange}
-              placeholder="Adicione uma nova tarefa"
-            />
-            <button onClick={handleCreateNewTask}>Adicionar</button>
-          </section>
-          <section className={styles.tasksCount}>
-            <div>
-              <span>Tarefas criadas</span>
-              <span className={styles.taskCountNumbers}>{tasks.length}</span>
-            </div>
-            <div>
-              <span>Concluídas</span>
-              <span className={styles.taskCountNumbers}>
-                {count} de {tasks.length}
-              </span>
-            </div>
-          </section>
-          {renderItem()}
-          {tasks.map(
-            (task: {
-              id: number;
-              content: string;
-              description: string;
-              checked: boolean;
-            }) => (
-              <Tasks
-                key={tasks.id}
-                id={tasks.id}
-                content={tasks.content}
-                descrição="oi"
-                deleteTask={deleteTask}
-                countTask={() => toggleTask(task.id, task.checked)}
-                checked={task.checked}
-              />
-            )
-          )}
-        </div>
-      </main>
-      <footer className={styles.creditos}>
-          <div className={styles.creditosContainer}>
-            <h2>
-              Desenvolvido por: Alexsandro e Netw
-            </h2>
-            <h3>
-              Criador do projeto: Netw
-            </h3>
+    <main className={styles.fundo}>
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <h1>to-do-list</h1>
+        </header>
+        <section className={styles.imputArea}>
+          <input
+            value={newTask}
+            type="text"
+            onChange={handleChange}
+            placeholder="Adicione uma nova tarefa"
+          />
+          <button onClick={handleCreateNewTask} disabled={!newTask.trim()}>
+            Adicionar
+          </button>
+        </section>
+        <section className={styles.tasksCount}>
+          <div>
+            <span>Tarefas criadas</span>
+            <span className={styles.taskCountNumbers}>{tasks.length}</span>
           </div>
-        </footer>
-    </>
+          <div>
+            <span>Concluídas</span>
+            <span className={styles.taskCountNumbers}>
+              {count} de {tasks.length}
+            </span>
+          </div>
+        </section>
+        {renderNoTasksMessage()}
+        {tasks.map((task) => (
+          <Tasks
+            key={task.id}
+            {...task}
+            deleteTask={deleteTask}
+            updateTask={updateTask}
+            countTask={handleTaskChange}
+          />
+        ))}
+      </div>
+    </main>
   );
-}
+};
 
 export default App;
