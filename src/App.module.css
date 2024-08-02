@@ -3,7 +3,7 @@ html {
 }
 
 .fundo {
-  background-color: #6141a6;
+  background-color: #1c1c1c;
   position: relative;
   min-height: 100vh;
   height: 100%;
@@ -23,7 +23,7 @@ html {
   position: relative;
 }
 
-form{
+form {
   width: 100%;
 }
 
@@ -53,7 +53,7 @@ form{
   gap: 1.2rem;
 }
 
-.header img{
+.header img {
   width: 100%;
   height: auto;
   max-width: 60px;
@@ -110,6 +110,7 @@ form{
   border-top: 2px solid #8067b8;
   color: #fff;
   width: 100%;
+  font-size: 1.6rem;
   margin-top: 2.4rem;
   line-height: 1.5;
   display: flex;
@@ -125,11 +126,11 @@ form{
   font-size: 1.8rem;
 }
 
-.subtitle{
+.subtitle {
   font-size: 1.45rem;
 }
 
-.creditos{
+.creditos {
   display: none;
   position: fixed;
   bottom: 10px;
@@ -140,35 +141,35 @@ form{
   border-radius: 6px;
 }
 
-.creditos .creditosContainer{
+.creditos .creditosContainer {
   line-height: 1.85;
 }
 
-.creditosContainer h2{
+.creditosContainer h2 {
   font-size: 1.35rem;
   font-weight: 500;
   color: #f2f2f2;
 }
 
-.creditosContainer h3{
+.creditosContainer h3 {
   font-size: 1.25rem;
   font-weight: 500;
   color: #f2f2f2;
 }
 
-@media screen and (max-width: 712px){
-  .imputArea{
+@media screen and (max-width: 712px) {
+  .imputArea {
     flex-wrap: wrap;
     justify-content: center;
   }
-  
-  .imputArea button{
+
+  .imputArea button {
     max-width: 50%;
   }
 }
 
-@media screen and (max-width: 412px){
-   .tasksCount{
+@media screen and (max-width: 412px) {
+  .tasksCount {
     justify-content: center;
   }
 }

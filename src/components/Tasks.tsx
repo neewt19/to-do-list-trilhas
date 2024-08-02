@@ -8,9 +8,9 @@ import Modal from "./Modal";
 export interface TasksProps {
   content: string;
   id: number;
-  description?: string;
+  description: string;
   deleteTask: (task: number, checked: boolean) => void;
-  updateTask: (id: number, content: string, description?: string) => void;
+  updateTask: (id: number, content: string, description: string) => void;
   countTask: (taskId: number, checked: boolean) => void;
   checked: boolean;
 }
@@ -45,7 +45,7 @@ export function Tasks({
   return (
     <>
       <section className={style.container}>
-        <div className={style.checkBox}>
+        <div className={style.checkBox} onClick={toggleModal}>
           <label>
             <input
               type="checkbox"
@@ -58,7 +58,7 @@ export function Tasks({
             <div className={style.content}>
               <span className={style.titleTask}>{content}</span>
               <hr />
-              <span className={style.titleTask}>{description}</span>
+              <span className={style.descriptionTask}>{description}</span>
             </div>
           </label>
           <div className={style.buttonContainer}>

@@ -39,7 +39,7 @@ const App = () => {
     };
     setTasks([...tasks, newTaskObj]);
     setNewTask("");
-    setNewDescription("");
+    setNewDescription("sou uma descrição");
     setId(id + 1);
   };
 
@@ -68,16 +68,13 @@ const App = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setNewTask(e.target.value);
 
-  const handleDescriptionChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setNewDescription(e.target.value);
-
   const renderNoTasksMessage = () =>
     tasks.length === 0 && (
       <div className={styles.noTasks}>
         <span className={styles.spanBold}>
           Você ainda não tem tarefas cadastradas
         </span>
-        <span>Crie tarefas e organize seus itens a fazer</span>
+        <span>Crie tarefas e se mantenha organizado</span>
       </div>
     );
 
